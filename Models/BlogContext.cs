@@ -20,7 +20,7 @@ namespace EFTutorial.Models
                 .Build();
 
             optionsBuilder
-//.UseLazyLoadingProxies()
+        .UseLazyLoadingProxies()
             .UseSqlServer(configuration.GetConnectionString("BloggingContext"));
         }
     }

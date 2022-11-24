@@ -21,7 +21,7 @@ namespace EFTutorial
             using (var db = new BlogContext()) 
             {
                 var blog2 = db.Blogs.Where(x=>x.BlogId == 1).FirstOrDefault();
-                 var blogsList = blog2.ToList(); // convert to List from IQueryable
+                 var blogsList = blog2; // convert to List from IQueryable
 
                 System.Console.WriteLine($"Posts for Blog {blog2.Name}");
 
@@ -71,18 +71,21 @@ namespace EFTutorial
             post2.Content = postTitle;
             post2.BlogId = 1;
 
-            try
-            {
-                using (var db = new BlogContext()){
-                db.Posts.Add(post2);
-                db.SaveChanges();
-           }
-             catch (Exception ex){
-                Console.WriteLine(ex.Message);
-                Console.WriteLine(ex.InnerException);
-                }
+                    try
+                    {
+                        using (var db = new BlogContext())
+                        {
+                            db.Posts.Add(post2);
+                            db.SaveChanges();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                        Console.WriteLine(ex.InnerException);
+                    }
             break;
-            default;
+                default:
             break;
             }
         }
